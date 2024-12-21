@@ -1,10 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <string>
-#include <climits>
-#include <cstring>
-#include <cmath>
+#include <bits/stdc++.h>
 
 #define int long long
 #define vi vector<int>
@@ -16,7 +10,7 @@ using namespace std;
 int segtree[400010];
 
 void pushup(int cur) {
-	segtree[cur] = min(segtree[cur * 2], segtree[cur * 2 + 1]);
+	segtree[cur] = segtree[cur * 2] + segtree[cur * 2 + 1];
 }
 
 void update(int cur, int l, int r, int idx, int tar) {
@@ -36,7 +30,7 @@ void update(int cur, int l, int r, int idx, int tar) {
 
 int query(int cur, int l, int r, int ql, int qr) {
 	if (r < ql || qr < l) {
-		return INT_MAX;
+		return 0;
 	}
 	if (ql <= l && r <= qr) {
 		return segtree[cur];
@@ -44,7 +38,7 @@ int query(int cur, int l, int r, int ql, int qr) {
 	int m = (l + r) / 2;
 	int leftRes = query(2 * cur, l, m, ql, qr);
 	int rightRes = query(2 * cur + 1, m + 1, r, ql, qr);
-	return min(leftRes, rightRes);
+	return leftRes + rightRes;
 }
 int32_t main() {
 	ios_base::sync_with_stdio(false);
