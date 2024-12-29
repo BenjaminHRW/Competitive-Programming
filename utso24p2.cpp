@@ -21,6 +21,11 @@ int32_t main(){
     sort(sor, sor + n, std::greater<>());
     int ma = 0; 
     int pos = 0;
+    if(k % 2 == 1){
+        k--;
+        ma += sor[n-1];
+    }
+    n--;
     while(k > 2 && pos < n){
         if(sor[pos].second == 2){
             ma += sor[pos].first * 2;
