@@ -1,23 +1,26 @@
-#include <bits/stdc++.h>
-
+#include <iostream>
+#include <algorithm>
 using namespace std;
- 
+
 #define int long long
 pair<int, int> triangle[100005];
 
-int32_t main() {
+int32_t main()
+{
 	int a, b;
 	cin >> a >> b;
-	for (int i = 0; i < b; i++) {
+	for (int i = 0; i < b; i++)
+	{
 		int x, y;
 		cin >> x >> y;
-		triangle[i] = { y, a - x + 1 }; // x axis, y axis
+		triangle[i] = {y, a - x + 1}; // x axis, y axis
 	}
 	sort(triangle, triangle + b);
 	int totalsum = 0;
 	pair<int, int> lastnum;
 	lastnum = triangle[0];
-	for (int i = 1; i < b; i++) {
+	for (int i = 1; i < b; i++)
+	{
 		int diff = lastnum.second - (triangle[i].first - lastnum.first);
 		long long z = 0;
 		diff = max(diff, z);
